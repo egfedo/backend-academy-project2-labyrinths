@@ -112,6 +112,13 @@
             <groupId>org.jcommander</groupId>
             <artifactId>jcommander</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.jline</groupId>
+            <artifactId>jline</artifactId>
+            <version>3.26.3</version>
+        </dependency>
+
         <!-- Apache Commons -->
         <dependency>
             <groupId>org.apache.commons</groupId>
