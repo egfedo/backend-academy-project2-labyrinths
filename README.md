@@ -1,137 +1,53 @@
-# Шаблон Java-проекта для домашних заданий
 
-Шаблон для домашних заданий [Академии Бэкенда 2024][course-url].
+# Требования
 
-Цель данного репозитория – познакомить вас с процессом разработки приложений на
-Java с использованием наиболее распространенных практик, инструментов и
-библиотек.
+- Программа была протестирована на Unix-подобных ОС (MacOS и Ubuntu). При запуске на Windows возможно неправильное поведение из-за отсутствия некоторых возможностей JLine;
 
-## Структура проекта
+- Размер терминала может быть любой, интерфейс адаптируется под него при запуске. Дальнейшее изменение размера во время работы не предусмотрено. Рекомендуемые размеры: 80x24;
 
-Это типовой Java-проект, который собирается с помощью инструмента автоматической
-сборки проектов [Apache Maven](https://maven.apache.org/).
+- Нужно сменить раскладку клавиатуры на английскую;
 
-Проект состоит из следующих директорий и файлов:
+- Крайне не советуется запускать программу в консоли внутри IDE (не будет работать из-за отсутствия функций JLine).
+# Работа с программой
 
-- [pom.xml](./pom.xml) – дескриптор сборки, используемый maven, или Project
-  Object Model. В нем описаны зависимости проекта и шаги по его сборке
-- [src/](./src) – директория, которая содержит исходный код приложения и его
-  тесты:
-  - [src/main/](./src/main) – здесь находится код вашего приложения
-  - [src/test/](./src/test) – здесь находятся тесты вашего приложения
-- [mvnw](./mvnw) и [mvnw.cmd](./mvnw.cmd) – скрипты maven wrapper для Unix и
-  Windows, которые позволяют запускать команды maven без локальной установки
-- [checkstyle.xml](checkstyle.xml),
-  [checkstyle-suppression.xml](checkstyle-suppression.xml), [pmd.xml](pmd.xml) и
-  [spotbugs-excludes.xml](spotbugs-excludes.xml) – в проекте используются
-  [линтеры](https://en.wikipedia.org/wiki/Lint_%28software%29) для контроля
-  качества кода. Указанные файлы содержат правила для используемых линтеров
-- [.mvn/](./.mvn) – служебная директория maven, содержащая конфигурационные
-  параметры сборщика
-- [lombok.config](lombok.config) – конфигурационный файл
-  [Lombok](https://projectlombok.org/), библиотеки помогающей избежать рутинного
-  написания шаблонного кода
-- [.editorconfig](.editorconfig) – файл с описанием настроек форматирования кода
-- [.github/workflows/build.yml](.github/workflows/build.yml) – файл с описанием
-  шагов сборки проекта в среде Github
-- [.gitattributes](.gitattributes), [.gitignore](.gitignore) – служебные файлы
-  для git, с описанием того, как обрабатывать различные файлы, и какие из них
-  игнорировать
+## Начальное меню
 
-## Начало работы
+При запуске программы вас встретит меню выбора алгоритма генерации:
 
-Подробнее о том, как приступить к разработке, описано в разделах
-[курса][course-url] `1.8 Настройка IDE`, `1.9 Работа с Git` и
-`1.10 Настройка SSH`.
+![Начальное меню](https://sun9-39.userapi.com/impg/0F6omxKSqVwZdlYrqdnvgrzCHS9oBrUSkq5d9g/4XYzeXniTUs.jpg?size=1684x1156&quality=96&sign=49bb3b141ba736cecba2e70ceb4bc429&type=album)
 
-Для того чтобы собрать проект, и проверить, что все работает корректно, можно
-запустить из модального окна IDEA
-[Run Anything](https://www.jetbrains.com/help/idea/running-anything.html)
-команду:
+После выбора алгоритма нужно выбрать размер лабиринта:
 
-```shell
-mvn clean verify
-```
+![Выбор размеров лабиринта](https://sun9-6.userapi.com/impg/6bhEKgY_jG5xR6IAQ572x0iJPW0DP_Gq4mROag/QZSirXCjLkQ.jpg?size=1684x1156&quality=96&sign=dcfeafa4161b664d05348ebbbb3494ef&type=album)
 
-Альтернативно можно в терминале из корня проекта выполнить следующие команды.
 
-Для Unix (Linux, macOS, Cygwin, WSL):
+## Первый просмотр лабиринта
 
-```shell
-./mvnw clean verify
-```
+После первого меню откроется просмотр лабиринта:
 
-Для Windows:
+![Просмотр лабиринта](https://sun9-57.userapi.com/impg/k4F3eCqQzrjs4TfDCGI0VSlVidkyJ9o9UkqGqg/7u4v_ivYsfY.jpg?size=1684x1156&quality=96&sign=cdae8432075437c8e27f10e38f9ad343&type=album)
 
-```shell
-mvnw.cmd clean verify
-```
+В режиме просмотра лабиринта будет отображаться весь лабиринт или его часть. Для перемещения используются клавиши WASD:
 
-Для окончания сборки потребуется подождать какое-то время, пока maven скачает
-все необходимые зависимости, скомпилирует проект и прогонит базовый набор
-тестов.
+![Перемещение по лабиринту](https://sun9-77.userapi.com/impg/jGmlAmpvYtfta1JUXvaBNB-ivj8i0q6SlArgrA/TLZwkhoAT_4.jpg?size=1684x1156&quality=96&sign=71b1ca1299000e6d830ac9a747414437&type=album)
 
-Если вы в процессе сборки получили ошибку:
+Из просмотра можно выйти, использовав клавишу ESC.
 
-```shell
-Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion failed with message:
-JDK version must be at least 22
-```
+## Выбор алгоритма
 
-Значит, версия вашего JDK ниже 22.
+После первого просмотра лабиринта откроется меню выбора алгоритма поиска пути:
 
-Если же получили ошибку:
+![Меню выбора](https://sun9-24.userapi.com/impg/cXzryyWgh_kzb3_Nsc9rTAcA00rd1o8e51NJIg/JMzkVCey8RI.jpg?size=1684x1156&quality=96&sign=fd2ea066f7416452425fbdafe5ba1f21&type=album)
 
-```shell
-Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion failed with message:
-Maven version should, at least, be 3.8.8
-```
+После выбора всех опций просмотр лабиринта откроется во второй раз.
 
-Значит, у вас используется версия maven ниже 3.8.8. Такого не должно произойти,
-если вы запускаете сборку из IDEA или через `mvnw`-скрипты.
+## Просмотр лабиринта с путём
 
-Далее будут перечислены другие полезные команды maven.
+Управление не отличается от первого просмотра. При этом показывается путь:
 
-Запуск только компиляции основных классов:
+![Начало пути](https://sun9-23.userapi.com/impg/L9QTPJ21KzuE4vmZngx7A2zWxQhSgr4AwQA0WA/C9UxIgtWsxs.jpg?size=1684x1156&quality=96&sign=c5b043d72ccc55ee3f0f8b7423a82242&type=album)
 
-```shell
-mvn compile
-```
+Начало пути отображается красным кружком, сам путь - цветом, меняющимся в зависимости от покрытия. Конец пути отображается зелёным:
 
-Запуск тестов:
+![Конец пути](https://sun9-41.userapi.com/impg/Ayet04a_iQeFFtVFbiOyjXOWH3fXT2OSqTwMOA/1qD9n-Gbrcs.jpg?size=1684x1156&quality=96&sign=d4b49514ee6145172b7bba77b86a6087&type=album)
 
-```shell
-mvn test
-```
-
-Запуск линтеров:
-
-```shell
-mvn checkstyle:check modernizer:modernizer spotbugs:check pmd:check pmd:cpd-check
-```
-
-Вывод дерева зависимостей проекта (полезно при отладке транзитивных
-зависимостей):
-
-```shell
-mvn dependency:tree
-```
-
-Вывод вспомогательной информации о любом плагине (вместо `compiler` можно
-подставить интересующий вас плагин):
-
-```shell
-mvn help:describe -Dplugin=compiler
-```
-
-## Дополнительные материалы
-
-- Документация по maven: https://maven.apache.org/guides/index.html
-- Поиск зависимостей и их версий: https://central.sonatype.com/search
-- Документация по процессу автоматизированной сборки в среде github:
-  https://docs.github.com/en/actions
-- Документация по git: https://git-scm.com/doc
-- Javadoc для Java 22:
-  https://docs.oracle.com/en/java/javase/22/docs/api/index.html
-
-[course-url]: https://edu.tinkoff.ru/all-activities/courses/870efa9d-7067-4713-97ae-7db256b73eab
