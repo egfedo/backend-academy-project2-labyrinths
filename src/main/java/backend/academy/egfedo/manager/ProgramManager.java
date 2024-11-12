@@ -38,14 +38,14 @@ public class ProgramManager {
             MenuOutput menuOutput = new TerminalMenuOutput(terminal);
             MenuInput menuInput = new TerminalMenuInput(terminal);
 
-            List<MenuBlockManager> blocks = List.of(
+            List<MenuBlockManager> chooseGenBlocks = List.of(
                 new ChooseGenAlgBlock(menuInput, menuOutput),
                 new ChooseDimensionsBlock(menuInput, menuOutput)
             );
 
-            var chooseGenMenu = new MenuManager(blocks, menuOutput);
+            var chooseGenMenu = new MenuManager(chooseGenBlocks, menuOutput);
 
-            List<MenuBlockManager> blocks2 = List.of(
+            List<MenuBlockManager> chooseSolveBlocks = List.of(
                 new ChooseSolveAlgBlock(menuInput, menuOutput),
                 new ChooseStartBlock(menuInput, menuOutput),
                 new ChooseEndBlock(menuInput, menuOutput)
@@ -58,7 +58,7 @@ public class ProgramManager {
             );
 
             var manager = new MazeViewManager(output, input);
-            var chooseSolveMenu = new MenuManager(blocks2, menuOutput);
+            var chooseSolveMenu = new MenuManager(chooseSolveBlocks, menuOutput);
 
             var options = chooseGenMenu.run();
 
