@@ -47,23 +47,8 @@ public class TerminalMazeViewOutput implements MazeViewOutput  {
     public void displayMaze(List<List<MazeTile>> fragment, Vector offset, Map<Direction, Boolean> fogFlags) {
         terminal.puts(InfoCmp.Capability.cursor_address, 0, 0);
         writer.println(" ".repeat(terminal.getWidth() / 2 - Math.ceilDiv(HEADING.length(), 2)) + HEADING);
-        writer.print("        ");
-
-        for (int j = offset.x(); j < offset.x() + dimensions.x(); j++) {
-            if (j < 10) {
-                writer.print(' ');
-            }
-            writer.print(j);
-            writer.print("  ");
-        }
-        writer.println();
-        if (fogFlags.get(Direction.UP)) {
-            writer.print("      ");
-            writer.print("^".repeat(dimensions.x() * 4 + 2));
-        } else {
-            writer.print("      ");
-            writer.print(" ".repeat(dimensions.x() * 4 + 2));
-        }
+        printNumbers(offset);
+        printDirection(fogFlags, Direction.UP, "^");
         writer.println();
 
         int y = offset.y();
@@ -110,16 +95,18 @@ public class TerminalMazeViewOutput implements MazeViewOutput  {
 
             writer.println();
         }
-        if (fogFlags.get(Direction.DOWN)) {
-            writer.print("      ");
-            writer.print("V".repeat(dimensions.x() * 4 + 2));
-        } else {
-            writer.print("      ");
-            writer.print(" ".repeat(dimensions.x() * 4 + 2));
-        }
 
+        printDirection(fogFlags, Direction.DOWN, "V");
         writer.println();
+        printNumbers(offset);
+        writer.println();
+        writer.print(" [W, A, S, D] - Move  [esc] - Exit");
+        writer.flush();
+    }
+
+    private void printNumbers(Vector offset) {
         writer.print("        ");
+
         for (int j = offset.x(); j < offset.x() + dimensions.x(); j++) {
             if (j < 10) {
                 writer.print(' ');
@@ -128,9 +115,16 @@ public class TerminalMazeViewOutput implements MazeViewOutput  {
             writer.print("  ");
         }
         writer.println();
-        writer.println();
-        writer.print(" [W, A, S, D] - Move  [esc] - Exit");
-        writer.flush();
+    }
+
+    private void printDirection(Map<Direction, Boolean> fogFlags, Direction dir, String sym) {
+        if (fogFlags.get(dir)) {
+            writer.print("      ");
+            writer.print(sym.repeat(dimensions.x() * 4 + 2));
+        } else {
+            writer.print("      ");
+            writer.print(" ".repeat(dimensions.x() * 4 + 2));
+        }
     }
 
     @Override
