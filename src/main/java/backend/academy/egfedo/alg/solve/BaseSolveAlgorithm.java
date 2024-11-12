@@ -48,16 +48,16 @@ public abstract class BaseSolveAlgorithm implements SolveAlgorithm {
 
             for (var dir: Direction.values()) {
                 if (maze.getCell(vec).hasDirection(dir)) {
-                    var neighbor = vec.add(dir.vec);
-                    if (!visited.contains(neighbor) && !toVisit.contains(neighbor)) {
-                        prev.put(neighbor, vec);
+                    var neighbour = vec.add(dir.vec);
+                    if (!visited.contains(neighbour) && !toVisit.contains(neighbour)) {
+                        prev.put(neighbour, vec);
                         queue.add(
                             new Pair<>(
-                                curr.getFirst() + maze.getCell(vec).getDirection(dir) + heuristic(neighbor, end),
-                                neighbor
+                                curr.getFirst() + maze.getCell(vec).getDirection(dir) + heuristic(neighbour, end),
+                                neighbour
                             )
                         );
-                        toVisit.add(neighbor);
+                        toVisit.add(neighbour);
                     }
                 }
             }
