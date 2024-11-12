@@ -104,6 +104,7 @@ public class TerminalMazeViewOutput implements MazeViewOutput  {
         writer.flush();
     }
 
+    @SuppressWarnings({"MagicNumber", "MultipleStringLiterals"})
     private void printNumbers(Vector offset) {
         writer.print("        ");
 
@@ -117,6 +118,7 @@ public class TerminalMazeViewOutput implements MazeViewOutput  {
         writer.println();
     }
 
+    @SuppressWarnings({"MagicNumber", "MultipleStringLiterals"})
     private void printDirection(Map<Direction, Boolean> fogFlags, Direction dir, String sym) {
         if (fogFlags.get(dir)) {
             writer.print("      ");
