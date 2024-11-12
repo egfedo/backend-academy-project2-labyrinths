@@ -1,5 +1,6 @@
 package backend.academy.egfedo.manager;
 
+import backend.academy.egfedo.alg.factory.GenAlgorithmFactory;
 import backend.academy.egfedo.alg.gen.GenAlgorithm;
 import backend.academy.egfedo.alg.solve.SolveAlgorithm;
 import backend.academy.egfedo.data.Vector;
@@ -60,7 +61,9 @@ public class ProgramManager {
 
             var options = chooseGenMenu.run();
 
-            GenAlgorithm algorithm = GenAlgorithm.getByEnum(options.gen());
+            var genFactory = new GenAlgorithmFactory();
+            GenAlgorithm algorithm = genFactory.getByEnum(options.gen());
+
             var maze = algorithm.generateMaze(options.mazeSize().x(), options.mazeSize().y());
 
             manager.displayMaze(maze, null);
