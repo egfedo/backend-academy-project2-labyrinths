@@ -3,7 +3,6 @@ package backend.academy.egfedo.manager;
 import backend.academy.egfedo.alg.factory.GenAlgorithmFactory;
 import backend.academy.egfedo.alg.factory.SolveAlgorithmFactory;
 import backend.academy.egfedo.alg.gen.GenAlgorithm;
-import backend.academy.egfedo.alg.solve.SolveAlgorithm;
 import backend.academy.egfedo.data.Vector;
 import backend.academy.egfedo.io.MazeViewInput;
 import backend.academy.egfedo.io.MazeViewOutput;

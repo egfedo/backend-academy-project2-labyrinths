@@ -1,7 +1,6 @@
 package backend.academy.egfedo.alg.solve;
 
 import backend.academy.egfedo.data.Maze;
-import backend.academy.egfedo.data.SolveAlgorithmName;
 import backend.academy.egfedo.data.Vector;
 import java.util.List;
 

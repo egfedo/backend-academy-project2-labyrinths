@@ -6,7 +6,6 @@ import backend.academy.egfedo.data.Maze;
 import backend.academy.egfedo.data.Vector;
 import backend.academy.egfedo.util.RandomProvider;
 import java.util.Objects;
-import java.util.Random;
 
 public class ImperfectWrapper implements GenAlgorithm {
 
