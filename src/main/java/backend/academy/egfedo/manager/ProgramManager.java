@@ -1,6 +1,7 @@
 package backend.academy.egfedo.manager;
 
 import backend.academy.egfedo.alg.factory.GenAlgorithmFactory;
+import backend.academy.egfedo.alg.factory.SolveAlgorithmFactory;
 import backend.academy.egfedo.alg.gen.GenAlgorithm;
 import backend.academy.egfedo.alg.solve.SolveAlgorithm;
 import backend.academy.egfedo.data.Vector;
@@ -70,7 +71,8 @@ public class ProgramManager {
 
             options = chooseSolveMenu.run(options);
 
-            var solver = SolveAlgorithm.getByEnum(options.solve());
+            var solveFactory = new SolveAlgorithmFactory();
+            var solver = solveFactory.getByEnum(options.solve());
             var path = solver.solve(maze, options.start(), options.end());
 
             manager.displayMaze(maze, path);
