@@ -181,10 +181,11 @@ public class MazeViewManager {
         }
 
         private void drawPathTile(int first, int second) {
-            switch (array.get(second).get(first)) {
-                case FLOOR -> array.get(second).set(first, MazeTile.PATH);
-                case MUD -> array.get(second).set(first, MazeTile.MUD_PATH);
-                case ICE -> array.get(second).set(first, MazeTile.ICE_PATH);
+            var line = array.get(second);
+            switch (line.get(first)) {
+                case FLOOR -> line.set(first, MazeTile.PATH);
+                case MUD -> line.set(first, MazeTile.MUD_PATH);
+                case ICE -> line.set(first, MazeTile.ICE_PATH);
                 case PATH, MUD_PATH, ICE_PATH -> { }
                 default -> throw new IllegalStateException(
                     "Path can only go through floor or mud "
