@@ -26,8 +26,7 @@ public class PrimAlgorithm implements GenAlgorithm  {
         List<Vector> neighbours = new ArrayList<>();
         Map<Vector, List<Direction>> neighbourDir = new HashMap<>();
 
-        Random random = RandomProvider.getInstance();
-        var startPos = new Vector(random.nextInt(width), random.nextInt(height));
+        var startPos = new Vector(RandomProvider.nextInt(width), RandomProvider.nextInt(height));
         mst.add(startPos);
 
         for (var dir : Direction.values()) {
@@ -43,24 +42,24 @@ public class PrimAlgorithm implements GenAlgorithm  {
         neighbourDir.put(startPos, new ArrayList<>());
 
         while (mst.size() < width * height) {
-            var randIdx = random.nextInt(neighbours.size());
+            var randIdx = RandomProvider.nextInt(neighbours.size());
             var curr = neighbours.get(randIdx);
             neighbours.remove(randIdx);
 
             var paths = neighbourDir.get(curr);
-            var pathDir = paths.get(random.nextInt(paths.size()));
+            var pathDir = paths.get(RandomProvider.nextInt(paths.size()));
 
             if (paths.size() > 1) {
                 int i = 0;
                 Vector conn;
                 do {
-                    pathDir = paths.get(random.nextInt(paths.size()));
+                    pathDir = paths.get(RandomProvider.nextInt(paths.size()));
                     conn = curr.add(pathDir.vec);
                     i++;
                 } while (i < Config.MAX_PRIM_RANDOM_RETRIES && builder.getCell(conn).hasDirection(pathDir));
             }
 
-            int diff = pathDistribution.get(random.nextInt(pathDistribution.size()));
+            int diff = pathDistribution.get(RandomProvider.nextInt(pathDistribution.size()));
             builder.connect(curr, pathDir, diff);
             mst.add(curr);
 

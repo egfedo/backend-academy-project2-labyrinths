@@ -17,4 +17,15 @@ public class RandomProvider {
         }
         return instance;
     }
+
+    public static int nextInt(int bound) {
+        getInstance();
+        return instance.nextInt(bound);
+    }
+
+    public static int nextInt(int origin, int bound) {
+        getInstance();
+        return instance.nextInt(origin, bound);
+    }
+
 }

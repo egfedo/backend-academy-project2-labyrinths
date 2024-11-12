@@ -24,7 +24,8 @@ public class DFSAlgorithm implements GenAlgorithm {
     public Maze generateMaze(int width, int height) {
         var builder = new Maze.Builder(height, width);
         Random random = RandomProvider.getInstance();
-        var startPos = new Vector(random.nextInt(width), random.nextInt(height));
+
+        var startPos = new Vector(RandomProvider.nextInt(width), RandomProvider.nextInt(height));
         Set<Vector> passed = new HashSet<>();
         passed.add(startPos);
 
@@ -41,7 +42,7 @@ public class DFSAlgorithm implements GenAlgorithm {
             for (var dir : directions) {
                 var neighbor = curr.add(dir.vec);
                 if (builder.inBounds(neighbor) && !passed.contains(neighbor)) {
-                    int diff = pathDistribution.get(random.nextInt(pathDistribution.size()));
+                    int diff = pathDistribution.get(RandomProvider.nextInt(pathDistribution.size()));
                     builder.connect(curr, dir, diff);
                     passed.add(neighbor);
                     queue.addFirst(neighbor);
