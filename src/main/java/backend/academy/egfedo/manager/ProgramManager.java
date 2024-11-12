@@ -25,7 +25,7 @@ import org.jline.terminal.TerminalBuilder;
 public class ProgramManager {
 
     @SuppressWarnings({"MagicNumber", "RegexpSinglelineJava"})
-    public void run() {
+    public void run() throws IOException {
 
         try (
             Terminal terminal = TerminalBuilder.builder()
@@ -75,8 +75,6 @@ public class ProgramManager {
             var path = solver.solve(maze, options.start(), options.end());
 
             manager.displayMaze(maze, path);
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
         }
     }
 }
